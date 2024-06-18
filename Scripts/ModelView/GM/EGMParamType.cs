@@ -61,7 +61,7 @@ namespace ET.Client
                         Debug.LogError($"参数转换失败 {value} 无法转换 long 请检查");
                     return longValue;
                 case EGMParamType.Enum:
-                    var enumType = CodeTypes.Instance.GetType(info.EnumFullName, true);
+                    var enumType = CodeTypes.Instance.GetType(info.EnumFullName);
                     if (enumType == null)
                     {
                         Debug.LogError($"参数转换失败 {info.EnumFullName} 没有找到这个枚举");

@@ -8,7 +8,7 @@ namespace ET.Client
     /// <summary>
     /// 由YIUI工具自动创建 请勿修改
     /// </summary>
-    [FriendOf(typeof(YIUIComponent))]
+    [FriendOf(typeof(YIUIChild))]
     [FriendOf(typeof(YIUIWindowComponent))]
     [FriendOf(typeof(YIUIViewComponent))]
     [EntitySystemOf(typeof(GMViewComponent))]
@@ -27,7 +27,7 @@ namespace ET.Client
         
         private static void UIBind(this GMViewComponent self)
         {
-            self.u_UIBase = self.GetParent<YIUIComponent>();
+            self.u_UIBase = self.GetParent<YIUIChild>();
             self.u_UIWindow = self.UIBase.GetComponent<YIUIWindowComponent>();
             self.u_UIView = self.UIBase.GetComponent<YIUIViewComponent>();
             self.UIWindow.WindowOption = EWindowOption.BanTween|EWindowOption.BanAwaitOpenTween|EWindowOption.BanAwaitCloseTween|EWindowOption.SkipOtherOpenTween|EWindowOption.SkipOtherCloseTween;

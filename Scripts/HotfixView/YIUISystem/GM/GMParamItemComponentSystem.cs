@@ -62,7 +62,7 @@ namespace ET.Client
             self.OptionDic  = new();
             self.u_ComDropdown.ClearOptions();
 
-            var enumType = CodeTypes.Instance.GetType(info.EnumFullName, true);
+            var enumType = CodeTypes.Instance.GetType(info.EnumFullName);
             if (enumType == null) return;
 
             if (enumType is { IsEnum: true })

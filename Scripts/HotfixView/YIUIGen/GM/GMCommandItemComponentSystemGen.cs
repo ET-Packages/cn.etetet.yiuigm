@@ -8,7 +8,7 @@ namespace ET.Client
     /// <summary>
     /// 由YIUI工具自动创建 请勿修改
     /// </summary>
-    [FriendOf(typeof(YIUIComponent))]
+    [FriendOf(typeof(YIUIChild))]
     [EntitySystemOf(typeof(GMCommandItemComponent))]
     public static partial class GMCommandItemComponentSystem
     {
@@ -25,7 +25,7 @@ namespace ET.Client
         
         private static void UIBind(this GMCommandItemComponent self)
         {
-            self.u_UIBase = self.GetParent<YIUIComponent>();
+            self.u_UIBase = self.GetParent<YIUIChild>();
 
             self.u_ComParamLoop = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.LoopHorizontalScrollRect>("u_ComParamLoop");
             self.u_DataName = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataName");

@@ -8,7 +8,7 @@ namespace ET.Client
     /// <summary>
     /// 由YIUI工具自动创建 请勿修改
     /// </summary>
-    [FriendOf(typeof(YIUIComponent))]
+    [FriendOf(typeof(YIUIChild))]
     [EntitySystemOf(typeof(GMTypeItemComponent))]
     public static partial class GMTypeItemComponentSystem
     {
@@ -25,7 +25,7 @@ namespace ET.Client
         
         private static void UIBind(this GMTypeItemComponent self)
         {
-            self.u_UIBase = self.GetParent<YIUIComponent>();
+            self.u_UIBase = self.GetParent<YIUIChild>();
 
             self.u_DataTypeName = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataTypeName");
             self.u_DataSelect = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueBool>("u_DataSelect");

@@ -8,7 +8,7 @@ namespace ET.Client
     /// <summary>
     /// 由YIUI工具自动创建 请勿修改
     /// </summary>
-    [FriendOf(typeof(YIUIComponent))]
+    [FriendOf(typeof(YIUIChild))]
     [EntitySystemOf(typeof(GMParamItemComponent))]
     public static partial class GMParamItemComponentSystem
     {
@@ -25,7 +25,7 @@ namespace ET.Client
         
         private static void UIBind(this GMParamItemComponent self)
         {
-            self.u_UIBase = self.GetParent<YIUIComponent>();
+            self.u_UIBase = self.GetParent<YIUIChild>();
 
             self.u_ComInputField = self.UIBase.ComponentTable.FindComponent<TMPro.TMP_InputField>("u_ComInputField");
             self.u_ComToggle = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.Toggle>("u_ComToggle");

@@ -15,8 +15,8 @@ namespace ET.Client
         public const string PkgName = "GM";
         public const string ResName = "GMParamItem";
 
-        public EntityRef<YIUIComponent> u_UIBase;
-        public YIUIComponent UIBase => u_UIBase;
+        public EntityRef<YIUIChild> u_UIBase;
+        public YIUIChild UIBase => u_UIBase;
         public TMPro.TMP_InputField u_ComInputField;
         public UnityEngine.UI.Toggle u_ComToggle;
         public TMPro.TMP_Dropdown u_ComDropdown;
