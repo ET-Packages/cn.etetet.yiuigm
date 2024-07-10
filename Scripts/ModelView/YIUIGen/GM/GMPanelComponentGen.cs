@@ -17,7 +17,8 @@ namespace ET.Client
     /// 由YIUI工具自动创建 请勿修改
     /// </summary>
     [YIUI(EUICodeType.Panel, EPanelLayer.Top)]
-    public partial class GMPanelComponent: Entity, IDestroy, IAwake, IYIUIBind, IYIUIInitialize, IYIUIOpen
+    [ComponentOf(typeof(YIUIChild))]
+    public partial class GMPanelComponent : Entity, IDestroy, IAwake, IYIUIBind, IYIUIInitialize, IYIUIOpen
     {
         public const string PkgName = "GM";
         public const string ResName = "GMPanel";

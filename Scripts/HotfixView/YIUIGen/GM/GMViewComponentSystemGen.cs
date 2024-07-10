@@ -24,7 +24,7 @@ namespace ET.Client
         {
             self.UIBind();
         }
-        
+
         private static void UIBind(this GMViewComponent self)
         {
             self.u_UIBase = self.GetParent<YIUIChild>();
