@@ -3,7 +3,7 @@ using YIUIFramework;
 
 namespace ET.Client
 {
-    public partial class GMViewComponent: Entity, IYIUIEvent<OnGMEventClose>
+    public partial class GMViewComponent: Entity, IDynamicEvent<OnGMEventClose>
     {
         public bool                                                  Opened;
         public List<EGMType>                                         GMTypeData;

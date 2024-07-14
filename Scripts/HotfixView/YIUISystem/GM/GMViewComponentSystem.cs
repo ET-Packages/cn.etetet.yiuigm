@@ -30,7 +30,7 @@ namespace ET.Client
         }
 
         [EntitySystem]
-        private static async ETTask YIUIEvent(this GMViewComponent self, OnGMEventClose message)
+        private static async ETTask DynamicEvent(this GMViewComponent self, OnGMEventClose message)
         {
             await self.UIView.CloseAsync();
         }

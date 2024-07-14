@@ -107,7 +107,7 @@ namespace ET.Client
             var closeGM      = await info.Command.Run(self.Root(), paramVo);
             ParamVo.Put(paramVo);
             if (closeGM)
-                await self.Fiber().UIEvent(new OnGMEventClose());
+                await self.DynamicEvent(new OnGMEventClose());
             YIUIMgrComponent.Inst.RecoverLayerOptionForever(banClickCode);
         }
     }
