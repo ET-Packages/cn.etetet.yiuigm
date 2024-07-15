@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace ET.Client
 {
-    [FriendOf(typeof (GMViewComponent))]
+    [FriendOf(typeof(GMViewComponent))]
     public static partial class GMViewComponentSystem
     {
         [EntitySystem]
         private static void YIUIInitialize(this GMViewComponent self)
         {
             self.m_CommandComponent = self.Root().GetComponent<GMCommandComponent>();
-            self.GMTypeName = self.CommandComponent.GMTypeName;
-            self.GMTypeLoop = new YIUILoopScroll<EGMType, GMTypeItemComponent>(self, self.u_ComGMTypeLoop, self.GMTypeTitleRenderer);
+            self.GMTypeName         = self.CommandComponent.GMTypeName;
+            self.GMTypeLoop         = new YIUILoopScroll<EGMType, GMTypeItemComponent>(self, self.u_ComGMTypeLoop, self.GMTypeTitleRenderer);
             self.GMTypeLoop.SetOnClickInfo("u_EventSelect", self.OnClickTitle);
             self.GMTypeData = new List<EGMType>();
-            foreach (EGMType gmType in Enum.GetValues(typeof (EGMType)))
+            foreach (EGMType gmType in Enum.GetValues(typeof(EGMType)))
             {
                 self.GMTypeData.Add(gmType);
             }
@@ -32,7 +32,7 @@ namespace ET.Client
         [EntitySystem]
         private static async ETTask DynamicEvent(this GMViewComponent self, OnGMEventClose message)
         {
-            await self.UIView.CloseAsync();
+            await self.UIView.CloseAsync(self);
         }
 
         [EntitySystem]
@@ -91,7 +91,7 @@ namespace ET.Client
 
         private static void OnEventCloseAction(this GMViewComponent self)
         {
-            self.UIView.Close();
+            self.UIView.Close(self);
         }
 
         #endregion YIUIEvent结束
