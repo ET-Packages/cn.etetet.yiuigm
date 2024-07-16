@@ -3,13 +3,12 @@ using YIUIFramework;
 
 namespace ET.Client
 {
-    public partial class GMViewComponent: Entity, IDynamicEvent<OnGMEventClose>
+    public partial class GMViewComponent : Entity, IDynamicEvent<OnGMEventClose>
     {
         public bool                                                  Opened;
-        public List<EGMType>                                         GMTypeData;
-        public YIUILoopScroll<EGMType, GMTypeItemComponent>          GMTypeLoop;
+        public List<int>                                             GMTypeData;
+        public YIUILoopScroll<int, GMTypeItemComponent>              GMTypeLoop;
         public YIUILoopScroll<GMCommandInfo, GMCommandItemComponent> GMCommandLoop;
-        public Dictionary<string, string>                            GMTypeName;
         public EntityRef<GMCommandComponent>                         m_CommandComponent;
         public GMCommandComponent                                    CommandComponent => m_CommandComponent;
     }

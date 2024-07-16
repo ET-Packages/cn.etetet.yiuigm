@@ -1,16 +1,17 @@
-﻿using Sirenix.OdinInspector;
-
-namespace ET.Client
+﻿namespace ET.Client
 {
     //GM命令分类
     //将会根据枚举生成页签
-    //LabelText特性标记转换为显示名称
-    public enum EGMType
+    //GMGroup特性标记转换为显示名称
+    //UniqueId特性标记唯一ID
+    //ID会从小到大排序
+    [UniqueId]
+    public static partial class EGMType
     {
         [GMGroup("公共")]
-        Common = 1,
+        public const int Common = 1000;
 
         [GMGroup("案列")]
-        Test = 999,
+        public const int Test = 9999;
     }
 }

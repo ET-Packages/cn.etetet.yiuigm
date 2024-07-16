@@ -8,62 +8,39 @@ using YIUIFramework;
 
 namespace ET.Client
 {
-    [FriendOf(typeof (GMCommandComponent))]
+    [FriendOf(typeof(GMCommandComponent))]
     public static class GMCommandComponentSystem
     {
         [EntitySystem]
-        public class GMCommandComponentAwakeSystem: AwakeSystem<GMCommandComponent>
+        public class GMCommandComponentAwakeSystem : AwakeSystem<GMCommandComponent>
         {
             protected override void Awake(GMCommandComponent self)
             {
-                self.GMTypeName     = new Dictionary<string, string>();
-                self.AllCommandInfo = new Dictionary<EGMType, List<GMCommandInfo>>();
-                self.InitGMType();
+                self.AllCommandInfo = new Dictionary<int, List<GMCommandInfo>>();
+                GMKeyHelper.GetKeys();
                 self.Init();
                 YIUIMgrComponent.Inst.Root.OpenPanelAsync<GMPanelComponent>().NoContext();
             }
         }
 
         [EntitySystem]
-        public class GMCommandComponentDestroySystem: DestroySystem<GMCommandComponent>
+        public class GMCommandComponentDestroySystem : DestroySystem<GMCommandComponent>
         {
             protected override void Destroy(GMCommandComponent self)
             {
             }
         }
 
-        private static void InitGMType(this GMCommandComponent self)
-        {
-            Type        enumType = typeof (EGMType);
-            FieldInfo[] fields   = enumType.GetFields(BindingFlags.Static | BindingFlags.Public);
-
-            foreach (FieldInfo field in fields)
-            {
-                GMGroupAttribute attribute = (GMGroupAttribute)Attribute.GetCustomAttribute(field, typeof (GMGroupAttribute));
-                if (attribute != null)
-                {
-                    self.GMTypeName.Add(field.Name, attribute.Name);
-                }
-            }
-        }
-
         private static void Init(this GMCommandComponent self)
         {
-            var types = CodeTypes.Instance.GetTypes(typeof (GMAttribute));
+            var types = CodeTypes.Instance.GetTypes(typeof(GMAttribute));
             foreach (var type in types)
             {
-                object[] attrs = type.GetCustomAttributes(typeof (GMAttribute), false);
-                if (attrs.Length >= 2)
-                {
-                    Debug.LogError($"{type.Name} 有多个相同特性 只允许有一个 GMAttribute 默认取第一个");
-                }
-
+                var eventAttribut = type.GetCustomAttribute<GMAttribute>(true);
                 var gmCommandInfo = new GMCommandInfo();
-                var eventAttribut = (GMAttribute)attrs[0];
                 var obj           = (IGMCommand)Activator.CreateInstance(type);
-                gmCommandInfo.GMType = eventAttribut.GMType;
-                gmCommandInfo.GMTypeName = self.GMTypeName.TryGetValue(eventAttribut.GMType.ToString(), out var name)
-                        ? name : eventAttribut.GMType.ToString();
+                gmCommandInfo.GMType        = eventAttribut.GMType;
+                gmCommandInfo.GMTypeName    = GMKeyHelper.GetDesc(eventAttribut.GMType);
                 gmCommandInfo.GMLevel       = eventAttribut.GMLevel;
                 gmCommandInfo.GMName        = eventAttribut.GMName;
                 gmCommandInfo.GMDesc        = eventAttribut.GMDesc;

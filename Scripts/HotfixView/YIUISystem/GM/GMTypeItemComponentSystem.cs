@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ET.Client
 {
-    [FriendOf(typeof (GMTypeItemComponent))]
+    [FriendOf(typeof(GMTypeItemComponent))]
     public static partial class GMTypeItemComponentSystem
     {
         [EntitySystem]
@@ -17,9 +17,9 @@ namespace ET.Client
         {
         }
 
-        public static void ResetItem(this GMTypeItemComponent self,string name, EGMType data)
+        public static void ResetItem(this GMTypeItemComponent self, int data)
         {
-            self.u_DataTypeName.SetValue(name);
+            self.u_DataTypeName.SetValue(GMKeyHelper.GetDesc(data));
         }
 
         public static void SelectItem(this GMTypeItemComponent self, bool value)

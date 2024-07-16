@@ -12,11 +12,11 @@ namespace ET.Client
         private static void YIUIInitialize(this GMViewComponent self)
         {
             self.m_CommandComponent = self.Root().GetComponent<GMCommandComponent>();
-            self.GMTypeName         = self.CommandComponent.GMTypeName;
-            self.GMTypeLoop         = new YIUILoopScroll<EGMType, GMTypeItemComponent>(self, self.u_ComGMTypeLoop, self.GMTypeTitleRenderer);
+            self.GMTypeLoop         = new YIUILoopScroll<int, GMTypeItemComponent>(self, self.u_ComGMTypeLoop, self.GMTypeTitleRenderer);
             self.GMTypeLoop.SetOnClickInfo("u_EventSelect", self.OnClickTitle);
-            self.GMTypeData = new List<EGMType>();
-            foreach (EGMType gmType in Enum.GetValues(typeof(EGMType)))
+            self.GMTypeData = new List<int>();
+
+            foreach (var gmType in GMKeyHelper.GetKeys())
             {
                 self.GMTypeData.Add(gmType);
             }
@@ -45,7 +45,7 @@ namespace ET.Client
             return true;
         }
 
-        private static void OnClickTitle(this GMViewComponent self, int index, EGMType data, GMTypeItemComponent item, bool select)
+        private static void OnClickTitle(this GMViewComponent self, int index, int data, GMTypeItemComponent item, bool select)
         {
             item.SelectItem(select);
             if (select)
@@ -54,15 +54,9 @@ namespace ET.Client
             }
         }
 
-        private static void GMTypeTitleRenderer(this GMViewComponent self, int index, EGMType data, GMTypeItemComponent item, bool select)
+        private static void GMTypeTitleRenderer(this GMViewComponent self, int index, int data, GMTypeItemComponent item, bool select)
         {
-            var name = data.ToString();
-            if (self.GMTypeName.TryGetValue(data.ToString(), out var typeName))
-            {
-                name = typeName;
-            }
-
-            item.ResetItem(name, data);
+            item.ResetItem(data);
             item.SelectItem(select);
             if (select)
             {
@@ -70,7 +64,7 @@ namespace ET.Client
             }
         }
 
-        private static void SelectTitleRefreshCommand(this GMViewComponent self, EGMType data)
+        private static void SelectTitleRefreshCommand(this GMViewComponent self, int data)
         {
             if (self.CommandComponent.AllCommandInfo.TryGetValue(data, out var commandInfoList))
             {
