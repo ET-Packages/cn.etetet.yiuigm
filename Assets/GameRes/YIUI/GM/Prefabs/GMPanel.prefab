@@ -88,6 +88,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: m_PackagesName
+      Entry: 1
+      Data: yiuigm
     - Name: IsSplitData
       Entry: 5
       Data: false
@@ -160,7 +163,7 @@ MonoBehaviour:
   PkgName: GM
   ResName: GMPanel
   UICodeType: 0
-  WindowOption: 123904
+  WindowOption: 124416
   PanelLayer: 0
   PanelOption: 4
   PanelStackOption: 0
