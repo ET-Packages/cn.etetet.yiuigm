@@ -1,7 +1,7 @@
 ﻿{
   "name": "cn.etetet.yiuigm",
   "displayName": "ET.YIUI.GM",
-  "version": "0.0.10",
+  "version": "0.0.20",
   "unity": "2022.3",
   "description": "YIUI GM命令 >>> 文档: https://lib9kmxvq7k.feishu.cn/wiki/ES7Gwz4EAiVGKSkotY5cRbTznuh",
   "author": {
@@ -14,8 +14,8 @@
   },
   "relatedPackages": {},
   "dependencies": {
-    "cn.etetet.yiuiframework": "0.0.10",
-    "cn.etetet.yiuiloopscrollrectasync": "0.0.10"
+    "cn.etetet.yiuiframework": "0.0.20",
+    "cn.etetet.yiuiloopscrollrectasync": "0.0.20"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@ET-Packages"
