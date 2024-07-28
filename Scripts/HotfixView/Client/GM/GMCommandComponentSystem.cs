@@ -8,6 +8,9 @@ using YIUIFramework;
 
 namespace ET.Client
 {
+    /// <summary>
+    /// 文档: https://lib9kmxvq7k.feishu.cn/wiki/NYADwMydliVmQ7kWXOuc0yxGn7p
+    /// </summary>
     [FriendOf(typeof(GMCommandComponent))]
     public static class GMCommandComponentSystem
     {

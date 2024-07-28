@@ -2,6 +2,9 @@
 
 namespace ET.Client
 {
+    /// <summary>
+    /// 文档: https://lib9kmxvq7k.feishu.cn/wiki/NYADwMydliVmQ7kWXOuc0yxGn7p
+    /// </summary>
     [ComponentOf(typeof (Scene))]
     public class GMCommandComponent: Entity, IAwake, IDestroy
     {

@@ -3,6 +3,9 @@ using YIUIFramework;
 
 namespace ET.Client
 {
+    /// <summary>
+    /// 文档: https://lib9kmxvq7k.feishu.cn/wiki/NYADwMydliVmQ7kWXOuc0yxGn7p
+    /// </summary>
     public partial class GMPanelComponent: Entity, IUpdate
     {
         public FloatPrefs _GMBtn_Pos_X = new("GMPanelComponent_GMBtn_Pos_X");
