@@ -12,16 +12,15 @@ namespace ET.Client
         private static void YIUIInitialize(this GMViewComponent self)
         {
             self.m_CommandComponent = self.Root().GetComponent<GMCommandComponent>();
-            self.GMTypeLoop         = new YIUILoopScroll<int, GMTypeItemComponent>(self, self.u_ComGMTypeLoop, self.GMTypeTitleRenderer);
-            self.GMTypeLoop.SetOnClickInfo("u_EventSelect", self.OnClickTitle);
-            self.GMTypeData = new List<int>();
+            self.GMTypeLoop         = new YIUILoopScroll<int>(self, self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
+            self.GMTypeData         = new List<int>();
 
             foreach (var gmType in GMKeyHelper.GetKeys())
             {
                 self.GMTypeData.Add(gmType);
             }
 
-            self.GMCommandLoop = new YIUILoopScroll<GMCommandInfo, GMCommandItemComponent>(self, self.u_ComGMCommandLoop, self.GMCommandRenderer);
+            self.GMCommandLoop = new YIUILoopScroll<GMCommandInfo>(self, self.u_ComGMCommandLoop, typeof(GMCommandItemComponent));
         }
 
         [EntitySystem]
@@ -45,22 +44,26 @@ namespace ET.Client
             return true;
         }
 
-        private static void OnClickTitle(this GMViewComponent self, int index, int data, GMTypeItemComponent item, bool select)
+        [YIUILoopRenderer]
+        public class GMViewComponentLoopRendererSystem : YIUILoopRendererSystem<GMViewComponent, GMTypeItemComponent, int>
         {
-            item.SelectItem(select);
-            if (select)
+            protected override void Renderer(GMViewComponent self, int index, GMTypeItemComponent item, int data, bool select)
             {
-                self.SelectTitleRefreshCommand(data);
+                item.ResetItem(data);
+                item.SelectItem(select);
+                if (select)
+                {
+                    self.SelectTitleRefreshCommand(data);
+                }
             }
-        }
 
-        private static void GMTypeTitleRenderer(this GMViewComponent self, int index, int data, GMTypeItemComponent item, bool select)
-        {
-            item.ResetItem(data);
-            item.SelectItem(select);
-            if (select)
+            protected override void Click(GMViewComponent self, int index, GMTypeItemComponent item, int data, bool select)
             {
-                self.SelectTitleRefreshCommand(data);
+                item.SelectItem(select);
+                if (select)
+                {
+                    self.SelectTitleRefreshCommand(data);
+                }
             }
         }
 
@@ -76,9 +79,13 @@ namespace ET.Client
             }
         }
 
-        private static void GMCommandRenderer(this GMViewComponent self, int index, GMCommandInfo data, GMCommandItemComponent item, bool select)
+        [YIUILoopRenderer]
+        public class GMViewComponent2LoopRendererSystem : YIUILoopRendererSystem<GMViewComponent, GMCommandItemComponent, GMCommandInfo>
         {
-            item.ResetItem(self.CommandComponent, data);
+            protected override void Renderer(GMViewComponent self, int index, GMCommandItemComponent item, GMCommandInfo data, bool select)
+            {
+                item.ResetItem(self.CommandComponent, data);
+            }
         }
 
         #region YIUIEvent开始

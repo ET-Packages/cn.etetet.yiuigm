@@ -12,10 +12,19 @@ namespace ET.Client
     [FriendOf(typeof(GMCommandItemComponent))]
     public static partial class GMCommandItemComponentSystem
     {
+        [YIUILoopRenderer]
+        public class GMCommandItemComponentLoopRendererSystem : YIUILoopRendererSystem<GMCommandItemComponent, GMParamItemComponent, GMParamInfo>
+        {
+            protected override void Renderer(GMCommandItemComponent self, int index, GMParamItemComponent item, GMParamInfo data, bool select)
+            {
+                item.ResetItem(data);
+            }
+        }
+
         [EntitySystem]
         private static void YIUIInitialize(this GMCommandItemComponent self)
         {
-            self.GMParamLoop = new YIUILoopScroll<GMParamInfo, GMParamItemComponent>(self, self.u_ComParamLoop, self.GMParamRenderer);
+            self.GMParamLoop = new YIUILoopScroll<GMParamInfo>(self, self.u_ComParamLoop, typeof(GMParamItemComponent));
         }
 
         [EntitySystem]
@@ -37,11 +46,6 @@ namespace ET.Client
         {
             await self.GMParamLoop.SetDataRefresh(self.Info.ParamInfoList);
             await self.GMParamLoop.RefreshCells();
-        }
-
-        private static void GMParamRenderer(this GMCommandItemComponent self, int index, GMParamInfo data, GMParamItemComponent item, bool select)
-        {
-            item.ResetItem(data);
         }
 
         #region YIUIEvent开始
