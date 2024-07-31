@@ -90,9 +90,13 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        private static void OnEventCloseAction(this GMViewComponent self)
+        [EntitySystem]
+        public class OnEventCloseAction : YIUIEventInvokeSystem<GMViewComponent>
         {
-            self.UIView.Close(self);
+            protected override void Invoke(GMViewComponent self)
+            {
+                self.UIView.Close(self);
+            }
         }
 
         #endregion YIUIEvent结束

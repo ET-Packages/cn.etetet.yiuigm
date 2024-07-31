@@ -45,7 +45,7 @@ namespace ET.Client
             {
                 if (!self.UIPanel.CurrentOpenViewActiveSelf)
                 {
-                    self.OnEventOpenGMViewAction();
+                    self.OnEventOpenGMView();
                 }
                 else
                 {
@@ -58,11 +58,21 @@ namespace ET.Client
             }
         }
 
-        #region YIUIEvent开始
-
-        private static void OnEventOpenGMViewAction(this GMPanelComponent self)
+        private static void OnEventOpenGMView(this GMPanelComponent self)
         {
             self.UIPanel.OpenViewAsync<GMViewComponent>().NoContext();
+        }
+
+        #region YIUIEvent开始
+
+        [EntitySystem]
+        [FriendOf(typeof(GMPanelComponent))]
+        public class OnEventOpenGMViewAction : YIUIEventInvokeSystem<GMPanelComponent>
+        {
+            protected override void Invoke(GMPanelComponent self)
+            {
+                self.OnEventOpenGMView();
+            }
         }
 
         private static void OnEventDragAction(this GMPanelComponent self, object p1)
