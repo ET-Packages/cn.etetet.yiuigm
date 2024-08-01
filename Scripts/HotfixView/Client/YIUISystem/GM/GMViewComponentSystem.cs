@@ -1,7 +1,7 @@
 ﻿using System;
 using YIUIFramework;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET.Client
 {
@@ -12,15 +12,15 @@ namespace ET.Client
         private static void YIUIInitialize(this GMViewComponent self)
         {
             self.m_CommandComponent = self.Root().GetComponent<GMCommandComponent>();
-            self.GMTypeLoop         = new YIUILoopScroll<int>(self, self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
-            self.GMTypeData         = new List<int>();
+            self.m_GMTypeLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type, string>(self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
+            self.GMTypeData = new List<int>();
 
             foreach (var gmType in GMKeyHelper.GetKeys())
             {
                 self.GMTypeData.Add(gmType);
             }
 
-            self.GMCommandLoop = new YIUILoopScroll<GMCommandInfo>(self, self.u_ComGMCommandLoop, typeof(GMCommandItemComponent));
+            self.m_GMCommandLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type>(self.u_ComGMCommandLoop, typeof(GMCommandItemComponent));
         }
 
         [EntitySystem]

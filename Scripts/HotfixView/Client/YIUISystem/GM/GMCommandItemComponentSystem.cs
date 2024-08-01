@@ -1,6 +1,7 @@
 ﻿using System;
 using YIUIFramework;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace ET.Client
 {
@@ -24,7 +25,7 @@ namespace ET.Client
         [EntitySystem]
         private static void YIUIInitialize(this GMCommandItemComponent self)
         {
-            self.GMParamLoop = new YIUILoopScroll<GMParamInfo>(self, self.u_ComParamLoop, typeof(GMParamItemComponent));
+            self.m_GMParamLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type>(self.u_ComParamLoop, typeof(GMParamItemComponent));
         }
 
         [EntitySystem]

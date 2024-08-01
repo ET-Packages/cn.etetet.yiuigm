@@ -7,6 +7,8 @@ namespace ET.Client
         public EntityRef<GMCommandComponent> m_CommandComponent;
         public GMCommandComponent            CommandComponent => m_CommandComponent;
         public GMCommandInfo                 Info;
-        public YIUILoopScroll<GMParamInfo>   GMParamLoop;
+
+        public EntityRef<YIUILoopScrollChild> m_GMParamLoop;
+        public YIUILoopScrollChild            GMParamLoop => m_GMParamLoop;
     }
 }
