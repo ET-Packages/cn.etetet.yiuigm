@@ -51,9 +51,14 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        private static void OnEventRunAction(this GMCommandItemComponent self)
+        [EntitySystem]
+        [FriendOf(typeof(GMCommandItemComponent))]
+        public class OnEventRunInvoke : YIUIEventInvokeSystem<GMCommandItemComponent>
         {
-            self.CommandComponent?.Run(self.Info).NoContext();
+            protected override void Invoke(GMCommandItemComponent self)
+            {
+                self.CommandComponent?.Run(self.Info).NoContext();
+            }
         }
 
         #endregion YIUIEvent结束

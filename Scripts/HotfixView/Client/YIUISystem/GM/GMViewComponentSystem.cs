@@ -12,8 +12,8 @@ namespace ET.Client
         private static void YIUIInitialize(this GMViewComponent self)
         {
             self.m_CommandComponent = self.Root().GetComponent<GMCommandComponent>();
-            self.m_GMTypeLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type, string>(self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
-            self.GMTypeData = new List<int>();
+            self.m_GMTypeLoop       = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type, string>(self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
+            self.GMTypeData         = new List<int>();
 
             foreach (var gmType in GMKeyHelper.GetKeys())
             {
@@ -91,7 +91,8 @@ namespace ET.Client
         #region YIUIEvent开始
 
         [EntitySystem]
-        public class OnEventCloseAction : YIUIEventInvokeSystem<GMViewComponent>
+        [FriendOf(typeof(GMViewComponent))]
+        public class OnEventCloseInvoke : YIUIEventInvokeSystem<GMViewComponent>
         {
             protected override void Invoke(GMViewComponent self)
             {

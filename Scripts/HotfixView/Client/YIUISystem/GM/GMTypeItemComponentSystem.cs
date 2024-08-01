@@ -29,8 +29,13 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        private static void OnEventSelectAction(this GMTypeItemComponent self)
+        [EntitySystem]
+        [FriendOf(typeof(GMTypeItemComponent))]
+        public class OnEventSelectInvoke : YIUIEventInvokeSystem<GMTypeItemComponent>
         {
+            protected override void Invoke(GMTypeItemComponent self)
+            {
+            }
         }
 
         #endregion YIUIEvent结束

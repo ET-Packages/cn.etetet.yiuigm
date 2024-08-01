@@ -93,18 +93,6 @@ namespace ET.Client
             }
         }
 
-        #region YIUIEvent开始
-
-        private static void OnEventInputAction(this GMParamItemComponent self, string p1)
-        {
-            self.ParamInfo.Value = p1;
-        }
-
-        private static void OnEventToggleAction(this GMParamItemComponent self, bool p1)
-        {
-            self.ParamInfo.Value = p1 ? "1" : "0";
-        }
-
         private static void OnEventDropdownAction(this GMParamItemComponent self, int p1)
         {
             if (p1 < 0 || p1 >= self.OptionList.Count)
@@ -114,6 +102,38 @@ namespace ET.Client
             }
 
             self.ParamInfo.Value = self.OptionDic[self.OptionList[p1].text];
+        }
+
+        #region YIUIEvent开始
+
+        [EntitySystem]
+        [FriendOf(typeof(GMParamItemComponent))]
+        public class OnEventDropdownInvoke : YIUIEventInvokeSystem<GMParamItemComponent, int>
+        {
+            protected override void Invoke(GMParamItemComponent self, int p1)
+            {
+                self.OnEventDropdownAction(p1);
+            }
+        }
+
+        [EntitySystem]
+        [FriendOf(typeof(GMParamItemComponent))]
+        public class OnEventToggleInvoke : YIUIEventInvokeSystem<GMParamItemComponent, bool>
+        {
+            protected override void Invoke(GMParamItemComponent self, bool p1)
+            {
+                self.ParamInfo.Value = p1 ? "1" : "0";
+            }
+        }
+
+        [EntitySystem]
+        [FriendOf(typeof(GMParamItemComponent))]
+        public class OnEventInputInvoke : YIUIEventInvokeSystem<GMParamItemComponent, string>
+        {
+            protected override void Invoke(GMParamItemComponent self, string p1)
+            {
+                self.ParamInfo.Value = p1;
+            }
         }
 
         #endregion YIUIEvent结束

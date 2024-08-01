@@ -67,34 +67,49 @@ namespace ET.Client
 
         [EntitySystem]
         [FriendOf(typeof(GMPanelComponent))]
-        public class OnEventOpenGMViewAction : YIUIEventInvokeSystem<GMPanelComponent>
+        public class OnEventDragInvoke : YIUIEventInvokeSystem<GMPanelComponent, object>
+        {
+            protected override void Invoke(GMPanelComponent self, object p1)
+            {
+                var data = (PointerEventData)p1;
+                self.u_ComGMButton.anchoredPosition = data.position + self._Offset;
+            }
+        }
+
+        [EntitySystem]
+        [FriendOf(typeof(GMPanelComponent))]
+        public class OnEventEndDragInvoke : YIUIEventInvokeSystem<GMPanelComponent, object>
+        {
+            protected override void Invoke(GMPanelComponent self, object p1)
+            {
+                var endPos = self.u_ComGMButton.anchoredPosition;
+                endPos.x                            = Mathf.Clamp(endPos.x, 0, self._LimitSize.x);
+                endPos.y                            = Mathf.Clamp(endPos.y, 0, self._LimitSize.y);
+                self.u_ComGMButton.anchoredPosition = endPos;
+                self._GMBtn_Pos_X.Value             = endPos.x;
+                self._GMBtn_Pos_Y.Value             = endPos.y;
+            }
+        }
+
+        [EntitySystem]
+        [FriendOf(typeof(GMPanelComponent))]
+        public class OnEventBeginDragInvoke : YIUIEventInvokeSystem<GMPanelComponent, object>
+        {
+            protected override void Invoke(GMPanelComponent self, object p1)
+            {
+                var data = (PointerEventData)p1;
+                self._Offset = self.u_ComGMButton.anchoredPosition - data.position;
+            }
+        }
+
+        [EntitySystem]
+        [FriendOf(typeof(GMPanelComponent))]
+        public class OnEventOpenGMViewInvoke : YIUIEventInvokeSystem<GMPanelComponent>
         {
             protected override void Invoke(GMPanelComponent self)
             {
                 self.OnEventOpenGMView();
             }
-        }
-
-        private static void OnEventDragAction(this GMPanelComponent self, object p1)
-        {
-            var data = (PointerEventData)p1;
-            self.u_ComGMButton.anchoredPosition = data.position + self._Offset;
-        }
-
-        private static void OnEventEndDragAction(this GMPanelComponent self, object p1)
-        {
-            var endPos = self.u_ComGMButton.anchoredPosition;
-            endPos.x                            = Mathf.Clamp(endPos.x, 0, self._LimitSize.x);
-            endPos.y                            = Mathf.Clamp(endPos.y, 0, self._LimitSize.y);
-            self.u_ComGMButton.anchoredPosition = endPos;
-            self._GMBtn_Pos_X.Value             = endPos.x;
-            self._GMBtn_Pos_Y.Value             = endPos.y;
-        }
-
-        private static void OnEventBeginDragAction(this GMPanelComponent self, object p1)
-        {
-            var data = (PointerEventData)p1;
-            self._Offset = self.u_ComGMButton.anchoredPosition - data.position;
         }
 
         #endregion YIUIEvent结束
