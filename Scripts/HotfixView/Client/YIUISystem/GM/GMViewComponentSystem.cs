@@ -44,29 +44,6 @@ namespace ET.Client
             return true;
         }
 
-        [YIUILoopRenderer]
-        public class GMViewComponentLoopRendererSystem : YIUILoopRendererSystem<GMViewComponent, GMTypeItemComponent, int>
-        {
-            protected override void Renderer(GMViewComponent self, int index, GMTypeItemComponent item, int data, bool select)
-            {
-                item.ResetItem(data);
-                item.SelectItem(select);
-                if (select)
-                {
-                    self.SelectTitleRefreshCommand(data);
-                }
-            }
-
-            protected override void Click(GMViewComponent self, int index, GMTypeItemComponent item, int data, bool select)
-            {
-                item.SelectItem(select);
-                if (select)
-                {
-                    self.SelectTitleRefreshCommand(data);
-                }
-            }
-        }
-
         private static void SelectTitleRefreshCommand(this GMViewComponent self, int data)
         {
             if (self.CommandComponent.AllCommandInfo.TryGetValue(data, out var commandInfoList))
@@ -79,12 +56,30 @@ namespace ET.Client
             }
         }
 
-        [YIUILoopRenderer]
-        public class GMViewComponent2LoopRendererSystem : YIUILoopRendererSystem<GMViewComponent, GMCommandItemComponent, GMCommandInfo>
+        [EntitySystem]
+        private static void YIUILoopRenderer(this GMViewComponent self, GMCommandItemComponent item, GMCommandInfo data, int index, bool select)
         {
-            protected override void Renderer(GMViewComponent self, int index, GMCommandItemComponent item, GMCommandInfo data, bool select)
+            item.ResetItem(self.CommandComponent, data);
+        }
+
+        [EntitySystem]
+        private static void YIUILoopRenderer(this GMViewComponent self, GMTypeItemComponent item, int data, int index, bool select)
+        {
+            item.ResetItem(data);
+            item.SelectItem(select);
+            if (select)
             {
-                item.ResetItem(self.CommandComponent, data);
+                self.SelectTitleRefreshCommand(data);
+            }
+        }
+
+        [EntitySystem]
+        private static void YIUILoopOnClick(this GMViewComponent self, GMTypeItemComponent item, int data, int index, bool select)
+        {
+            item.SelectItem(select);
+            if (select)
+            {
+                self.SelectTitleRefreshCommand(data);
             }
         }
 

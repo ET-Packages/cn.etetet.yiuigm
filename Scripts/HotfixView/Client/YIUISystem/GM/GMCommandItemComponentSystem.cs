@@ -13,19 +13,16 @@ namespace ET.Client
     [FriendOf(typeof(GMCommandItemComponent))]
     public static partial class GMCommandItemComponentSystem
     {
-        [YIUILoopRenderer]
-        public class GMCommandItemComponentLoopRendererSystem : YIUILoopRendererSystem<GMCommandItemComponent, GMParamItemComponent, GMParamInfo>
-        {
-            protected override void Renderer(GMCommandItemComponent self, int index, GMParamItemComponent item, GMParamInfo data, bool select)
-            {
-                item.ResetItem(data);
-            }
-        }
-
         [EntitySystem]
         private static void YIUIInitialize(this GMCommandItemComponent self)
         {
             self.m_GMParamLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type>(self.u_ComParamLoop, typeof(GMParamItemComponent));
+        }
+
+        [EntitySystem]
+        private static void YIUILoopRenderer(this GMCommandItemComponent self, GMParamItemComponent item, GMParamInfo data, int index, bool select)
+        {
+            item.ResetItem(data);
         }
 
         [EntitySystem]
