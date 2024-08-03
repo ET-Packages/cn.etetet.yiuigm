@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 namespace ET.Client
 {
-    /// <summary>
-    /// Author  YIUI
-    /// Date    2023.11.30
-    /// Desc
-    /// </summary>
     [FriendOf(typeof(GMCommandItemComponent))]
     public static partial class GMCommandItemComponentSystem
     {
@@ -48,14 +43,10 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [EntitySystem]
-        [FriendOf(typeof(GMCommandItemComponent))]
-        public class OnEventRunInvoke : YIUIEventInvokeSystem<GMCommandItemComponent>
+        [YIUIInvoke]
+        private static void OnEventRunInvoke(this GMCommandItemComponent self)
         {
-            protected override void Invoke(GMCommandItemComponent self)
-            {
-                self.CommandComponent?.Run(self.Info).NoContext();
-            }
+            self.CommandComponent?.Run(self.Info).NoContext();
         }
 
         #endregion YIUIEvent结束

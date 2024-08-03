@@ -106,34 +106,22 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [EntitySystem]
-        [FriendOf(typeof(GMParamItemComponent))]
-        public class OnEventDropdownInvoke : YIUIEventInvokeSystem<GMParamItemComponent, int>
+        [YIUIInvoke]
+        private static void OnEventDropdownInvoke(this GMParamItemComponent self, int p1)
         {
-            protected override void Invoke(GMParamItemComponent self, int p1)
-            {
-                self.OnEventDropdownAction(p1);
-            }
+            self.OnEventDropdownAction(p1);
         }
 
-        [EntitySystem]
-        [FriendOf(typeof(GMParamItemComponent))]
-        public class OnEventToggleInvoke : YIUIEventInvokeSystem<GMParamItemComponent, bool>
+        [YIUIInvoke]
+        private static void OnEventToggleInvoke(this GMParamItemComponent self, bool p1)
         {
-            protected override void Invoke(GMParamItemComponent self, bool p1)
-            {
-                self.ParamInfo.Value = p1 ? "1" : "0";
-            }
+            self.ParamInfo.Value = p1 ? "1" : "0";
         }
 
-        [EntitySystem]
-        [FriendOf(typeof(GMParamItemComponent))]
-        public class OnEventInputInvoke : YIUIEventInvokeSystem<GMParamItemComponent, string>
+        [YIUIInvoke]
+        private static void OnEventInputInvoke(this GMParamItemComponent self, string p1)
         {
-            protected override void Invoke(GMParamItemComponent self, string p1)
-            {
-                self.ParamInfo.Value = p1;
-            }
+            self.ParamInfo.Value = p1;
         }
 
         #endregion YIUIEvent结束

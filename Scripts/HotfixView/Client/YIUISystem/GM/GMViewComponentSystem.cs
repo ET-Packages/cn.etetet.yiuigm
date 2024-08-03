@@ -85,14 +85,10 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [EntitySystem]
-        [FriendOf(typeof(GMViewComponent))]
-        public class OnEventCloseInvoke : YIUIEventInvokeSystem<GMViewComponent>
+        [YIUIInvoke]
+        private static void OnEventCloseInvoke(this GMViewComponent self)
         {
-            protected override void Invoke(GMViewComponent self)
-            {
-                self.UIView.Close(self);
-            }
+            self.UIView.Close(self);
         }
 
         #endregion YIUIEvent结束
