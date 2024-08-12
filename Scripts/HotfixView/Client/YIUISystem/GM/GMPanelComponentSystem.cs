@@ -47,7 +47,7 @@ namespace ET.Client
                     if (self.UIPanel.CurrentOpenView != null)
                     {
                         var view = self.UIPanel.CurrentOpenView.GetParent<YIUIChild>().GetComponent<YIUIViewComponent>();
-                        view.Close(self.UIPanel.CurrentOpenView);
+                        view.Close();
                     }
                 }
             }

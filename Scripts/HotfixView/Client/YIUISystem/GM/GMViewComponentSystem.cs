@@ -31,7 +31,7 @@ namespace ET.Client
         [EntitySystem]
         private static async ETTask DynamicEvent(this GMViewComponent self, OnGMEventClose message)
         {
-            await self.UIView.CloseAsync(self);
+            await self.UIView.CloseAsync();
         }
 
         [EntitySystem]
@@ -88,7 +88,7 @@ namespace ET.Client
         [YIUIInvoke]
         private static void OnEventCloseInvoke(this GMViewComponent self)
         {
-            self.UIView.Close(self);
+            self.UIView.Close();
         }
 
         #endregion YIUIEvent结束
