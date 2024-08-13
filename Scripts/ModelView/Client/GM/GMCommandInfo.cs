@@ -7,7 +7,7 @@ namespace ET.Client
     [EnableClass]
     public class GMCommandInfo
     {
-        public int           GMType;        //命令类型
+        public int               GMType;        //命令类型
         public string            GMTypeName;    //命令名称
         public int               GMLevel;       //命令等级
         public string            GMName;        //命令名称
