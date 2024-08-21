@@ -9,7 +9,7 @@ namespace ET.Client
     //3 命令名称 页面上显示的名字
     //4 命令描述 有描述时显示描述 没有时不显示
     [GM(EGMType.Test, 1, "测试案列", "测试案列描述.....")]
-    public class GM_Test: IGMCommand
+    public class GM_Test : IGMCommand
     {
         public List<GMParamInfo> GetParams()
         {
@@ -17,12 +17,12 @@ namespace ET.Client
             {
                 //目前有6种参数类型可选 长度无限
                 //根据需求这里设定对应参数类型与描述 将在页面上显示
-                new GMParamInfo(EGMParamType.Enum, "参数0 枚举", "ET.Client.EGMParamType"), //枚举案例 一定要写枚举全名
-                new GMParamInfo(EGMParamType.String, "参数1 字符串"),
-                new GMParamInfo(EGMParamType.Bool, "参数2 布尔"),
-                new GMParamInfo(EGMParamType.Float, "参数3 小数"),
-                new GMParamInfo(EGMParamType.Int, "参数4 整数"),
-                new GMParamInfo(EGMParamType.Long, "参数5 64整数"),
+                new GMParamInfo(EGMParamType.Enum, "参数0 枚举", "Bool", "ET.Client.EGMParamType"), //枚举案例 一定要写枚举全名
+                new GMParamInfo(EGMParamType.String, "参数1 字符串", "字符串"),
+                new GMParamInfo(EGMParamType.Bool, "参数2 布尔", "true"),
+                new GMParamInfo(EGMParamType.Float, "参数3 小数", "0.0125"),
+                new GMParamInfo(EGMParamType.Int, "参数4 整数", "123"),
+                new GMParamInfo(EGMParamType.Long, "参数5 64整数", "456"),
             };
         }
 

@@ -11,16 +11,11 @@
         public string       Value;        //参数值
         public string       EnumFullName; //枚举时的全名,命名空间.名称
 
-        public GMParamInfo(EGMParamType paramType, string desc)
-        {
-            ParamType = paramType;
-            Desc      = desc;
-        }
-
-        public GMParamInfo(EGMParamType paramType, string desc, string enumFullName)
+        public GMParamInfo(EGMParamType paramType, string desc, string value = "", string enumFullName = "")
         {
             ParamType    = paramType;
             Desc         = desc;
+            Value        = value;
             EnumFullName = enumFullName;
         }
     }

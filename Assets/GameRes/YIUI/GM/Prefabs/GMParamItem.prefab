@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 160}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &5923994534374533164
 MonoBehaviour:
@@ -173,7 +173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8273949950240438226
 RectTransform:
   m_ObjectHideFlags: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
       Data: 4|YIUIFramework.UIDataValueInt, ET.YIUIFramework
     - Name: m_Value
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -1687,7 +1687,7 @@ MonoBehaviour:
       Data: 4|YIUIFramework.UIDataValueInt, ET.YIUIFramework
     - Name: m_Value
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -1907,10 +1907,10 @@ RectTransform:
   - {fileID: 4837480720185347878}
   m_Father: {fileID: 3031007022170187941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 250, y: -85}
+  m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1727829946166131612
 MonoBehaviour:
@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ba3ada64f6d6cb40be5ed1560038ed3, type: 2}
-  m_sharedMaterial: {fileID: 8809470712117131071, guid: 0ba3ada64f6d6cb40be5ed1560038ed3,
+  m_sharedMaterial: {fileID: 3105410610807075551, guid: 0ba3ada64f6d6cb40be5ed1560038ed3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2057,7 +2057,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 2231369727
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.5176471}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2266,7 +2266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3994473800121771759
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2607,7 +2607,7 @@ MonoBehaviour:
       Data: 4|YIUIFramework.UIDataValueInt, ET.YIUIFramework
     - Name: m_Value
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -2948,7 +2948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3421,7 +3421,7 @@ MonoBehaviour:
       Data: 11|YIUIFramework.UIDataValueInt, ET.YIUIFramework
     - Name: m_Value
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -4008,7 +4008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4093,7 +4093,7 @@ MonoBehaviour:
   m_text: "\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ba3ada64f6d6cb40be5ed1560038ed3, type: 2}
-  m_sharedMaterial: {fileID: 8809470712117131071, guid: 0ba3ada64f6d6cb40be5ed1560038ed3,
+  m_sharedMaterial: {fileID: 3105410610807075551, guid: 0ba3ada64f6d6cb40be5ed1560038ed3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4193,7 +4193,7 @@ RectTransform:
   m_Father: {fileID: 9130133529410853412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

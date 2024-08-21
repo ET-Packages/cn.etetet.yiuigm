@@ -34,7 +34,13 @@ namespace ET.Client
                     break;
                 case EGMParamType.Bool:
                     self.u_DataTypeValue.SetValue(2);
-                    self.u_ComToggle.isOn = !string.IsNullOrEmpty(info.Value) && info.Value != "0";
+                    var toggleResult = false;
+                    if (!string.IsNullOrEmpty(info.Value))
+                    {
+                        bool.TryParse(info.Value, out toggleResult);
+                    }
+
+                    self.u_ComToggle.isOn = toggleResult;
                     break;
                 case EGMParamType.Float:
                     self.u_DataTypeValue.SetValue(1);
@@ -64,7 +70,8 @@ namespace ET.Client
 
             var enumType = CodeTypes.Instance.GetType(info.EnumFullName);
             if (enumType == null) return;
-
+            var dropdownIndex = 0;
+            var index         = 0;
             if (enumType is { IsEnum: true })
             {
                 foreach (var field in enumType.GetFields(BindingFlags.Public | BindingFlags.Static))
@@ -76,8 +83,11 @@ namespace ET.Client
                         showName = attribute.Text;
                     self.OptionList.Add(new TMP_Dropdown.OptionData(showName));
                     self.OptionDic.Add(showName, fieldName);
-
-                    //Log.Info($"枚举名称: {field.Name}, 显示文本: {showName}");
+                    if (fieldName == info.Value)
+                    {
+                        dropdownIndex = index;
+                    }
+                    index++;
                 }
             }
             else
@@ -86,11 +96,8 @@ namespace ET.Client
             }
 
             self.u_ComDropdown.AddOptions(self.OptionList);
-            if (string.IsNullOrEmpty(self.ParamInfo.Value) && self.OptionList.Count >= 1)
-            {
-                self.u_ComDropdown.value = 0;
-                self.OnEventDropdownAction(0);
-            }
+            self.u_ComDropdown.value = dropdownIndex;
+            self.OnEventDropdownAction(dropdownIndex);
         }
 
         private static void OnEventDropdownAction(this GMParamItemComponent self, int p1)
@@ -115,7 +122,7 @@ namespace ET.Client
         [YIUIInvoke]
         private static void OnEventToggleInvoke(this GMParamItemComponent self, bool p1)
         {
-            self.ParamInfo.Value = p1 ? "1" : "0";
+            self.ParamInfo.Value = p1 ? "true" : "false";
         }
 
         [YIUIInvoke]
