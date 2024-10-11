@@ -8,10 +8,10 @@
     [UniqueId]
     public static partial class EGMType
     {
-        [GMGroup("公共")]
-        public const int Common = 1000;
+        [GMGroup("Common")]
+        public const int Common = PackageType.YIUI * 1301 + 1;
 
-        [GMGroup("案列")]
-        public const int Test = 9999;
+        [GMGroup("Test")]
+        public const int Test = PackageType.YIUI * 1301 + 2;
     }
 }
