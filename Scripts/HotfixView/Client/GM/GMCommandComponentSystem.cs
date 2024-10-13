@@ -83,12 +83,22 @@ namespace ET.Client
             }
 
             var banClickCode = YIUIMgrComponent.Inst.BanLayerOptionForever();
-            var paramVo      = ParamVo.Get(objData);
-            var closeGM      = await info.Command.Run(self.Root(), paramVo);
-            ParamVo.Put(paramVo);
-            if (closeGM)
-                await self.DynamicEvent(new OnGMEventClose());
-            YIUIMgrComponent.Inst.RecoverLayerOptionForever(banClickCode);
+            try
+            {
+                var paramVo = ParamVo.Get(objData);
+                var closeGM = await info.Command.Run(self.Root(), paramVo);
+                ParamVo.Put(paramVo);
+                if (closeGM)
+                    await self.DynamicEvent(new OnGMEventClose());
+            }
+            catch (Exception e)
+            {
+                Log.Error($"GM 执行错误 {e.Message}");
+            }
+            finally
+            {
+                YIUIMgrComponent.Inst.RecoverLayerOptionForever(banClickCode);
+            }
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using TMPro;
+using UnityEngine.UI;
 using YIUIFramework;
 
 namespace ET.Client
 {
-    public partial class GMParamItemComponent: Entity
+    public partial class GMParamItemComponent : Entity
     {
-        public GMParamInfo                   ParamInfo;
-        public List<TMP_Dropdown.OptionData> OptionList;
-        public Dictionary<string, string>    OptionDic;
+        public GMParamInfo ParamInfo;
+        public List<Dropdown.OptionData> OptionList;
+        public Dictionary<string, string> OptionDic;
     }
 }

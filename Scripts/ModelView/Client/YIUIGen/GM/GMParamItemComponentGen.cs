@@ -18,9 +18,9 @@ namespace ET.Client
 
         public EntityRef<YIUIChild> u_UIBase;
         public YIUIChild UIBase => u_UIBase;
-        public TMPro.TMP_InputField u_ComInputField;
+        public UnityEngine.UI.InputField u_ComInputField;
         public UnityEngine.UI.Toggle u_ComToggle;
-        public TMPro.TMP_Dropdown u_ComDropdown;
+        public UnityEngine.UI.Dropdown u_ComDropdown;
         public YIUIFramework.UIDataValueString u_DataParamDesc;
         public YIUIFramework.UIDataValueInt u_DataTypeValue;
         public UIEventP1<string> u_EventInput;

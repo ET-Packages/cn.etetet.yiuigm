@@ -38,7 +38,6 @@ namespace ET.Client
         private static async ETTask WaitRefresh(this GMCommandItemComponent self)
         {
             await self.GMParamLoop.SetDataRefresh(self.Info.ParamInfoList);
-            await self.GMParamLoop.RefreshCells();
         }
 
         #region YIUIEvent开始

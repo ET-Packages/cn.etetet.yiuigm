@@ -1,10 +1,9 @@
 ﻿using System;
 using YIUIFramework;
-using System.Collections.Generic;
 using System.Reflection;
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET.Client
 {
@@ -25,12 +24,11 @@ namespace ET.Client
         {
             self.ParamInfo = info;
             self.u_DataParamDesc.SetValue(info.Desc);
-            self.u_ComInputField.text = info.Value;
             switch (info.ParamType)
             {
                 case EGMParamType.String:
                     self.u_DataTypeValue.SetValue(1);
-                    self.u_ComInputField.contentType = TMP_InputField.ContentType.Alphanumeric;
+                    self.u_ComInputField.contentType = InputField.ContentType.Standard;//TMP_InputField.ContentType.Alphanumeric;
                     break;
                 case EGMParamType.Bool:
                     self.u_DataTypeValue.SetValue(2);
@@ -44,12 +42,12 @@ namespace ET.Client
                     break;
                 case EGMParamType.Float:
                     self.u_DataTypeValue.SetValue(1);
-                    self.u_ComInputField.contentType = TMP_InputField.ContentType.DecimalNumber;
+                    self.u_ComInputField.contentType = InputField.ContentType.DecimalNumber;//TMP_InputField.ContentType.DecimalNumber;
                     break;
                 case EGMParamType.Int:
                 case EGMParamType.Long:
                     self.u_DataTypeValue.SetValue(1);
-                    self.u_ComInputField.contentType = TMP_InputField.ContentType.IntegerNumber;
+                    self.u_ComInputField.contentType = InputField.ContentType.IntegerNumber;//TMP_InputField.ContentType.IntegerNumber;
                     break;
                 case EGMParamType.Enum:
                     self.u_DataTypeValue.SetValue(3);
@@ -60,6 +58,8 @@ namespace ET.Client
                     self.u_DataTypeValue.SetValue(0);
                     return;
             }
+            self.u_ComInputField.lineType = InputField.LineType.MultiLineNewline;
+            self.u_ComInputField.text = info.Value;
         }
 
         private static void RefreshDropdownInfo(this GMParamItemComponent self, GMParamInfo info)
@@ -81,7 +81,7 @@ namespace ET.Client
                     var attribute = field.GetCustomAttribute<LabelTextAttribute>();
                     if (attribute != null)
                         showName = attribute.Text;
-                    self.OptionList.Add(new TMP_Dropdown.OptionData(showName));
+                    self.OptionList.Add(new Dropdown.OptionData(showName));
                     self.OptionDic.Add(showName, fieldName);
                     if (fieldName == info.Value)
                     {
