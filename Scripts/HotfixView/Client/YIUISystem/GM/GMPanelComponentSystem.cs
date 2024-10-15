@@ -12,6 +12,7 @@ namespace ET.Client
         [EntitySystem]
         private static void YIUIInitialize(this GMPanelComponent self)
         {
+            self._OpenGMViewKey = YIUIConstHelper.Const.OpenGMViewKey;
         }
 
         [EntitySystem]
@@ -36,7 +37,8 @@ namespace ET.Client
         [EntitySystem]
         private static void Update(this GMPanelComponent self)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (self._OpenGMViewKey == KeyCode.None) return;
+            if (Input.GetKeyDown(self._OpenGMViewKey))
             {
                 if (!self.UIPanel.CurrentOpenViewActiveSelf)
                 {

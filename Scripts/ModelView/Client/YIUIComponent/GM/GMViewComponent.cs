@@ -15,5 +15,7 @@ namespace ET.Client
 
         public EntityRef<GMCommandComponent> m_CommandComponent;
         public GMCommandComponent            CommandComponent => m_CommandComponent;
+
+        public IntPrefs m_GMTypeIndex = new("GMTypeIndex");
     }
 }

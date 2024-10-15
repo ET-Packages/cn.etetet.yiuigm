@@ -1,6 +1,7 @@
 ﻿using System;
 using YIUIFramework;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine.UI;
 
 namespace ET.Client
@@ -40,7 +41,8 @@ namespace ET.Client
             if (self.Opened) return true;
             self.GMTypeLoop.ClearSelect();
             self.Opened = true;
-            await self.GMTypeLoop.SetDataRefresh(self.GMTypeData, 0);
+            var openIndex = YIUIConstHelper.Const.OpenGMViewFirstType ? 0 : math.clamp(self.m_GMTypeIndex, 0, math.max(self.GMTypeData.Count - 1, 0));
+            await self.GMTypeLoop.SetDataRefresh(self.GMTypeData, openIndex);
             return true;
         }
 
@@ -79,6 +81,7 @@ namespace ET.Client
             item.SelectItem(select);
             if (select)
             {
+                self.m_GMTypeIndex.Value = index;
                 self.SelectTitleRefreshCommand(data);
             }
         }
