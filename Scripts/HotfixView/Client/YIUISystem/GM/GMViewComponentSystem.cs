@@ -87,13 +87,6 @@ namespace ET.Client
         }
 
         #region YIUIEvent开始
-
-        [YIUIInvoke]
-        private static void OnEventCloseInvoke(this GMViewComponent self)
-        {
-            self.UIView.Close();
-        }
-
         #endregion YIUIEvent结束
     }
 }

@@ -36,8 +36,7 @@ namespace ET.Client
 
             self.u_ComGMTypeLoop = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.LoopVerticalScrollRect>("u_ComGMTypeLoop");
             self.u_ComGMCommandLoop = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.LoopVerticalScrollRect>("u_ComGMCommandLoop");
-            self.u_EventClose = self.UIBase.EventTable.FindEvent<UIEventP0>("u_EventClose");
-            self.u_EventCloseHandle = self.u_EventClose.Add(self,"OnEventCloseInvoke");
+            self.u_UIYIUIClose_White = self.UIBase.CDETable.FindUIOwner<ET.Client.YIUICloseCommonComponent>("YIUIClose_White");
 
         }
     }

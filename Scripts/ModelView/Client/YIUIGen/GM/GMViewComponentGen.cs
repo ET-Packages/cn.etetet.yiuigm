@@ -24,8 +24,8 @@ namespace ET.Client
         public YIUIViewComponent UIView => u_UIView;
         public UnityEngine.UI.LoopVerticalScrollRect u_ComGMTypeLoop;
         public UnityEngine.UI.LoopVerticalScrollRect u_ComGMCommandLoop;
-        public UIEventP0 u_EventClose;
-        public UIEventHandleP0 u_EventCloseHandle;
+        public EntityRef<ET.Client.YIUICloseCommonComponent> u_UIYIUIClose_White;
+        public ET.Client.YIUICloseCommonComponent UIYIUIClose_White => u_UIYIUIClose_White;
 
     }
 }
