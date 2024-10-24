@@ -39,7 +39,8 @@ namespace ET.Client
                 case EGMParamType.String:
                     return value;
                 case EGMParamType.Bool:
-                    if (string.IsNullOrEmpty(value) || value == "0")
+                    value = value?.ToLower();
+                    if (string.IsNullOrEmpty(value) || value == "0" || value == "false")
                         return false;
                     return true;
                 case EGMParamType.Float:
