@@ -122,7 +122,7 @@ namespace ET.Client
         [YIUIInvoke]
         private static void OnEventToggleInvoke(this GMParamItemComponent self, bool p1)
         {
-            self.ParamInfo.Value = p1 ? "true" : "false";
+            self.ParamInfo.Value = p1 ? "1" : "0";
         }
 
         [YIUIInvoke]
