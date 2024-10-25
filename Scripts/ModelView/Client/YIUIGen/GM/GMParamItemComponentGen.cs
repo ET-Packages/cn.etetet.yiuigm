@@ -25,10 +25,13 @@ namespace ET.Client
         public YIUIFramework.UIDataValueInt u_DataTypeValue;
         public UIEventP1<string> u_EventInput;
         public UIEventHandleP1<string> u_EventInputHandle;
+        public const string OnEventInputInvoke = "GMParamItemComponent.OnEventInputInvoke";
         public UIEventP1<bool> u_EventToggle;
         public UIEventHandleP1<bool> u_EventToggleHandle;
+        public const string OnEventToggleInvoke = "GMParamItemComponent.OnEventToggleInvoke";
         public UIEventP1<int> u_EventDropdown;
         public UIEventHandleP1<int> u_EventDropdownHandle;
+        public const string OnEventDropdownInvoke = "GMParamItemComponent.OnEventDropdownInvoke";
 
     }
 }

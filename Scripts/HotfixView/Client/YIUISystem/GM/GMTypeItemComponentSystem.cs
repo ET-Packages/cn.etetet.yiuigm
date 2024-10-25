@@ -29,7 +29,7 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMTypeItemComponent.OnEventSelectInvoke)]
         private static void OnEventSelectInvoke(this GMTypeItemComponent self)
         {
         }

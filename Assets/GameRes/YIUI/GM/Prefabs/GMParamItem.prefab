@@ -2774,9 +2774,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: PanelSplitEditorShowData
-      Entry: 6
-      Data: 
   ComponentTable: {fileID: 9187599573834870474}
   DataTable: {fileID: 337729900117720886}
   EventTable: {fileID: 273825696213217887}

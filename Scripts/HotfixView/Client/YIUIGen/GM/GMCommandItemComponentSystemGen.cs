@@ -32,7 +32,7 @@ namespace ET.Client
             self.u_DataShowParamLoop = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueBool>("u_DataShowParamLoop");
             self.u_DataDesc = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataDesc");
             self.u_EventRun = self.UIBase.EventTable.FindEvent<UIEventP0>("u_EventRun");
-            self.u_EventRunHandle = self.u_EventRun.Add(self,"OnEventRunInvoke");
+            self.u_EventRunHandle = self.u_EventRun.Add(self,GMCommandItemComponent.OnEventRunInvoke);
 
         }
     }

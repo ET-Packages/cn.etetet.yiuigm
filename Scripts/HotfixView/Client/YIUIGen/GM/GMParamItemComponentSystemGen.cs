@@ -33,11 +33,11 @@ namespace ET.Client
             self.u_DataParamDesc = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataParamDesc");
             self.u_DataTypeValue = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueInt>("u_DataTypeValue");
             self.u_EventInput = self.UIBase.EventTable.FindEvent<UIEventP1<string>>("u_EventInput");
-            self.u_EventInputHandle = self.u_EventInput.Add(self,"OnEventInputInvoke");
+            self.u_EventInputHandle = self.u_EventInput.Add(self,GMParamItemComponent.OnEventInputInvoke);
             self.u_EventToggle = self.UIBase.EventTable.FindEvent<UIEventP1<bool>>("u_EventToggle");
-            self.u_EventToggleHandle = self.u_EventToggle.Add(self,"OnEventToggleInvoke");
+            self.u_EventToggleHandle = self.u_EventToggle.Add(self,GMParamItemComponent.OnEventToggleInvoke);
             self.u_EventDropdown = self.UIBase.EventTable.FindEvent<UIEventP1<int>>("u_EventDropdown");
-            self.u_EventDropdownHandle = self.u_EventDropdown.Add(self,"OnEventDropdownInvoke");
+            self.u_EventDropdownHandle = self.u_EventDropdown.Add(self,GMParamItemComponent.OnEventDropdownInvoke);
 
         }
     }

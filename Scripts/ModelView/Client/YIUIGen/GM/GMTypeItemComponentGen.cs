@@ -22,6 +22,7 @@ namespace ET.Client
         public YIUIFramework.UIDataValueBool u_DataSelect;
         public UIEventP0 u_EventSelect;
         public UIEventHandleP0 u_EventSelectHandle;
+        public const string OnEventSelectInvoke = "GMTypeItemComponent.OnEventSelectInvoke";
 
     }
 }

@@ -113,19 +113,19 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMParamItemComponent.OnEventDropdownInvoke)]
         private static void OnEventDropdownInvoke(this GMParamItemComponent self, int p1)
         {
             self.OnEventDropdownAction(p1);
         }
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMParamItemComponent.OnEventToggleInvoke)]
         private static void OnEventToggleInvoke(this GMParamItemComponent self, bool p1)
         {
             self.ParamInfo.Value = p1 ? "1" : "0";
         }
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMParamItemComponent.OnEventInputInvoke)]
         private static void OnEventInputInvoke(this GMParamItemComponent self, string p1)
         {
             self.ParamInfo.Value = p1;

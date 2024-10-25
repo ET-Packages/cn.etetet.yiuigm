@@ -24,6 +24,7 @@ namespace ET.Client
         public YIUIFramework.UIDataValueString u_DataDesc;
         public UIEventP0 u_EventRun;
         public UIEventHandleP0 u_EventRunHandle;
+        public const string OnEventRunInvoke = "GMCommandItemComponent.OnEventRunInvoke";
 
     }
 }

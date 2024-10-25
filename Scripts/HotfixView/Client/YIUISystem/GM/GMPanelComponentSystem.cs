@@ -57,14 +57,14 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMPanelComponent.OnEventDragInvoke)]
         private static void OnEventDragInvoke(this GMPanelComponent self, object p1)
         {
             var data = (PointerEventData)p1;
             self.u_ComGMButton.anchoredPosition = data.position + self._Offset;
         }
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMPanelComponent.OnEventEndDragInvoke)]
         private static void OnEventEndDragInvoke(this GMPanelComponent self, object p1)
         {
             var endPos = self.u_ComGMButton.anchoredPosition;
@@ -75,14 +75,14 @@ namespace ET.Client
             self._GMBtn_Pos_Y.Value             = endPos.y;
         }
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMPanelComponent.OnEventBeginDragInvoke)]
         private static void OnEventBeginDragInvoke(this GMPanelComponent self, object p1)
         {
             var data = (PointerEventData)p1;
             self._Offset = self.u_ComGMButton.anchoredPosition - data.position;
         }
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMPanelComponent.OnEventOpenGMViewInvoke)]
         private static void OnEventOpenGMViewInvoke(this GMPanelComponent self)
         {
             self.UIPanel.OpenViewAsync<GMViewComponent>().NoContext();

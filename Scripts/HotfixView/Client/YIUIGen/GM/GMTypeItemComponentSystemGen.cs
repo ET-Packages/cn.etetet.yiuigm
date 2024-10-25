@@ -30,7 +30,7 @@ namespace ET.Client
             self.u_DataTypeName = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataTypeName");
             self.u_DataSelect = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueBool>("u_DataSelect");
             self.u_EventSelect = self.UIBase.EventTable.FindEvent<UIEventP0>("u_EventSelect");
-            self.u_EventSelectHandle = self.u_EventSelect.Add(self,"OnEventSelectInvoke");
+            self.u_EventSelectHandle = self.u_EventSelect.Add(self,GMTypeItemComponent.OnEventSelectInvoke);
 
         }
     }

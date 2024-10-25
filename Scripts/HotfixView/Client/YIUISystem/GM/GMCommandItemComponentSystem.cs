@@ -42,7 +42,7 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [YIUIInvoke]
+        [YIUIInvoke(GMCommandItemComponent.OnEventRunInvoke)]
         private static void OnEventRunInvoke(this GMCommandItemComponent self)
         {
             self.CommandComponent?.Run(self.Info).NoContext();
