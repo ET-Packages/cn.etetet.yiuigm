@@ -93,7 +93,7 @@ namespace ET.Client
             }
             catch (Exception e)
             {
-                Log.Error($"GM 执行错误 {e.Message}");
+                Log.Error($"GM 执行错误 {e}");
             }
             finally
             {
