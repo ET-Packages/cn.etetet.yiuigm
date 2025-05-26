@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using YIUIFramework;
 using System.Collections.Generic;
@@ -32,10 +32,9 @@ namespace ET.Client
             self.u_UIPanel = self.UIBase.GetComponent<YIUIPanelComponent>();
             self.UIWindow.WindowOption = EWindowOption.BanOpenTween|EWindowOption.BanCloseTween|EWindowOption.BanAwaitOpenTween|EWindowOption.BanAwaitCloseTween|EWindowOption.SkipOtherOpenTween|EWindowOption.SkipOtherCloseTween;
             self.UIPanel.Layer = EPanelLayer.Top;
-            self.UIPanel.PanelOption = EPanelOption.TimeCache;
+            self.UIPanel.PanelOption = EPanelOption.ForeverCache|EPanelOption.DisClose|EPanelOption.IgnoreBack|EPanelOption.IgnoreClose;
             self.UIPanel.StackOption = EPanelStackOption.None;
             self.UIPanel.Priority = 99999;
-            self.UIPanel.CachePanelTime = 10;
 
             self.u_ComGMButton = self.UIBase.ComponentTable.FindComponent<UnityEngine.RectTransform>("u_ComGMButton");
             self.u_ComLimitRange = self.UIBase.ComponentTable.FindComponent<UnityEngine.RectTransform>("u_ComLimitRange");
