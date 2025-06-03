@@ -82,6 +82,7 @@ namespace ET.Client
                 objData.Add(objValue);
             }
 
+            EntityRef<GMCommandComponent> selfRef = self;
             var banClickCode = YIUIMgrComponent.Inst.BanLayerOptionForever();
             try
             {
@@ -89,7 +90,10 @@ namespace ET.Client
                 var closeGM = await info.Command.Run(self.Root(), paramVo);
                 ParamVo.Put(paramVo);
                 if (closeGM)
+                {
+                    self = selfRef;
                     await self.DynamicEvent(new OnGMEventClose());
+                }
             }
             catch (Exception e)
             {
