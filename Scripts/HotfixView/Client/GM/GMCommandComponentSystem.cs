@@ -22,7 +22,7 @@ namespace ET.Client
                 self.AllCommandInfo = new Dictionary<int, List<GMCommandInfo>>();
                 GMKeyHelper.GetKeys();
                 self.Init();
-                YIUIMgrComponent.Inst.Root.OpenPanelAsync<GMPanelComponent>().NoContext();
+                self.YIUIMgrRoot().OpenPanelAsync<GMPanelComponent>().NoContext();
             }
         }
 
@@ -83,7 +83,7 @@ namespace ET.Client
             }
 
             EntityRef<GMCommandComponent> selfRef = self;
-            var banClickCode = YIUIMgrComponent.Inst.BanLayerOptionForever();
+            var banClickCode = self.YIUIMgr().BanLayerOptionForever();
             try
             {
                 var paramVo = ParamVo.Get(objData);
@@ -101,7 +101,7 @@ namespace ET.Client
             }
             finally
             {
-                YIUIMgrComponent.Inst.RecoverLayerOptionForever(banClickCode);
+                self.YIUIMgr().RecoverLayerOptionForever(banClickCode);
             }
         }
     }
