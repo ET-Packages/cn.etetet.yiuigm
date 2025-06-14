@@ -22,7 +22,7 @@ namespace ET.Client
                 self.AllCommandInfo = new Dictionary<int, List<GMCommandInfo>>();
                 GMKeyHelper.GetKeys();
                 self.Init();
-                self.YIUIMgrRoot().OpenPanelAsync<GMPanelComponent>().NoContext();
+                self.YIUIRoot().OpenPanelAsync<GMPanelComponent>().NoContext();
             }
         }
 
