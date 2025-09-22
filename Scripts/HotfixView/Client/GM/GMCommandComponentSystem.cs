@@ -39,16 +39,16 @@ namespace ET.Client
             var types = CodeTypes.Instance.GetTypes(typeof(GMAttribute));
             foreach (var type in types)
             {
-                var eventAttribut = type.GetCustomAttribute<GMAttribute>(true);
+                var customAttribute = type.GetCustomAttribute<GMAttribute>(true);
                 var gmCommandInfo = new GMCommandInfo();
-                var obj           = (IGMCommand)Activator.CreateInstance(type);
-                gmCommandInfo.GMType        = eventAttribut.GMType;
-                gmCommandInfo.GMTypeName    = GMKeyHelper.GetDesc(eventAttribut.GMType);
-                gmCommandInfo.GMLevel       = eventAttribut.GMLevel;
-                gmCommandInfo.GMName        = eventAttribut.GMName;
-                gmCommandInfo.GMDesc        = eventAttribut.GMDesc;
-                gmCommandInfo.Command       = obj;
-                gmCommandInfo.ParamInfoList = obj.GetParams();
+                var obj = (IGMCommand)Activator.CreateInstance(type);
+                gmCommandInfo.GMType = customAttribute.GMType;
+                gmCommandInfo.GMTypeName = GMKeyHelper.GetDesc(customAttribute.GMType);
+                gmCommandInfo.GMLevel = customAttribute.GMLevel;
+                gmCommandInfo.GMName = customAttribute.GMName;
+                gmCommandInfo.GMDesc = customAttribute.GMDesc;
+                gmCommandInfo.Command = obj;
+                gmCommandInfo.ParamInfoList = obj.GetParams() ?? new();
 
                 self.AddInfo(gmCommandInfo);
             }
@@ -69,16 +69,16 @@ namespace ET.Client
         public static async ETTask Run(this GMCommandComponent self, GMCommandInfo info)
         {
             /*
-             * TODO 判断inof中的 GM命令需求等级
+             * TODO 判断info中的 GM命令需求等级
              * 取自身数据中的等级  判断是否符合要求
              */
 
             var paramList = info.ParamInfoList;
-            var objData   = new List<object>();
+            var objData = new List<object>();
             for (int i = 0; i < paramList.Count; i++)
             {
                 var paramInfo = paramList[i];
-                var objValue  = paramInfo.ParamType.TryToValue(paramInfo);
+                var objValue = paramInfo.ParamType.TryToValue(paramInfo);
                 objData.Add(objValue);
             }
 
