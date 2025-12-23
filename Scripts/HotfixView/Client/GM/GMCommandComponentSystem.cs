@@ -101,6 +101,7 @@ namespace ET.Client
             }
             finally
             {
+                self = selfRef;
                 self.YIUIMgr().RecoverLayerOptionForever(banClickCode);
             }
         }
