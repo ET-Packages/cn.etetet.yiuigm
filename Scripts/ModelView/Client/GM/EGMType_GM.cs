@@ -13,5 +13,7 @@
 
         [GMGroup("测试")]
         public const int Test = PackageType.YIUI * 1000 + 2;
+
+        //不要在这个文件扩展GM类型,应该到自己的包里面扩展
     }
 }

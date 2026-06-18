@@ -1,7 +1,9 @@
-﻿using System;
+using System;
+using System.IO;
 using YIUIFramework;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET.Client
@@ -13,8 +15,8 @@ namespace ET.Client
         private static void YIUIInitialize(this GMViewComponent self)
         {
             self.m_CommandComponent = self.Root().GetComponent<GMCommandComponent>();
-            self.m_GMTypeLoop       = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type, string>(self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
-            self.GMTypeData         = new List<int>();
+            self.m_GMTypeLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type, string>(self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
+            self.GMTypeData = new List<int>();
 
             foreach (var gmType in GMKeyHelper.GetKeys())
             {
@@ -87,6 +89,7 @@ namespace ET.Client
         }
 
         #region YIUIEvent开始
+
         #endregion YIUIEvent结束
     }
 }

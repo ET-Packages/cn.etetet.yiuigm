@@ -3,12 +3,22 @@ using YIUIFramework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 namespace ET.Client
 {
     [FriendOf(typeof(GMPanelComponent))]
     public static partial class GMPanelComponentSystem
     {
+#if ENABLE_INPUT_SYSTEM
+        private const string AlphaKeyPrefix = "Alpha"; // Unity KeyCode 主键盘数字键前缀
+        private const string InputSystemDigitKeyPrefix = "Digit"; // Input System 主键盘数字键前缀
+        private const string KeypadKeyPrefix = "Keypad"; // Unity KeyCode 小键盘按键前缀
+        private const string InputSystemNumpadKeyPrefix = "Numpad"; // Input System 小键盘按键前缀
+#endif
+
         [EntitySystem]
         private static void YIUIInitialize(this GMPanelComponent self)
         {
@@ -38,7 +48,11 @@ namespace ET.Client
         private static void Update(this GMPanelComponent self)
         {
             if (self._OpenGMViewKey == KeyCode.None) return;
+#if ENABLE_INPUT_SYSTEM
+            if (IsPressedThisFrame(self._OpenGMViewKey))
+#else
             if (Input.GetKeyDown(self._OpenGMViewKey))
+#endif
             {
                 if (!self.UIPanel.CurrentOpenViewActiveSelf)
                 {
@@ -54,6 +68,47 @@ namespace ET.Client
                 }
             }
         }
+
+#if ENABLE_INPUT_SYSTEM
+        private static bool IsPressedThisFrame(KeyCode keyCode)
+        {
+            var keyboard = Keyboard.current;
+            if (keyboard == null)
+            {
+                return false;
+            }
+
+            if (!TryConvertToInputSystemKey(keyCode, out var key))
+            {
+                return false;
+            }
+
+            return keyboard[key].wasPressedThisFrame;
+        }
+
+        private static bool TryConvertToInputSystemKey(KeyCode keyCode, out Key key)
+        {
+            key = default;
+            var keyName = keyCode.ToString();
+
+            if (Enum.TryParse(keyName, out key))
+            {
+                return true;
+            }
+
+            if (keyName.StartsWith(AlphaKeyPrefix, StringComparison.Ordinal) && keyName.Length == AlphaKeyPrefix.Length + 1)
+            {
+                return Enum.TryParse($"{InputSystemDigitKeyPrefix}{keyName[AlphaKeyPrefix.Length]}", out key);
+            }
+
+            if (keyName.StartsWith(KeypadKeyPrefix, StringComparison.Ordinal))
+            {
+                return Enum.TryParse($"{InputSystemNumpadKeyPrefix}{keyName.Substring(KeypadKeyPrefix.Length)}", out key);
+            }
+
+            return false;
+        }
+#endif
 
         #region YIUIEvent开始
 
