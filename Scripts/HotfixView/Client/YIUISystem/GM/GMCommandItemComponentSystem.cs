@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using YIUIFramework;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -28,10 +28,11 @@ namespace ET.Client
         public static void ResetItem(this GMCommandItemComponent self, GMCommandComponent commandComponent, GMCommandInfo info)
         {
             self.m_CommandComponent = commandComponent;
-            self.Info               = info;
+            self.Info = info;
             self.u_DataName.SetValue(info.GMName);
             self.u_DataDesc.SetValue(info.GMDesc);
             self.u_DataShowParamLoop.SetValue(info.ParamInfoList.Count >= 1);
+            self.u_DataIsHistoryRecord.SetValue(info.IsHistoryRecord);
             self.WaitRefresh().NoContext();
         }
 
@@ -46,6 +47,18 @@ namespace ET.Client
         private static void OnEventRunInvoke(this GMCommandItemComponent self)
         {
             self.CommandComponent?.Run(self.Info).NoContext();
+        }
+
+        [YIUIInvoke(GMCommandItemComponent.OnEventDeleteInvoke)]
+        private static void OnEventDeleteInvoke(this GMCommandItemComponent self)
+        {
+            self.CommandComponent?.DeleteHistory(self.Info);
+        }
+
+        [YIUIInvoke(GMCommandItemComponent.OnEventTopInvoke)]
+        private static void OnEventTopInvoke(this GMCommandItemComponent self)
+        {
+            self.CommandComponent?.TopHistory(self.Info);
         }
 
         #endregion YIUIEvent结束

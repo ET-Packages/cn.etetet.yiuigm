@@ -20,8 +20,10 @@ namespace ET.Client
             protected override void Awake(GMCommandComponent self)
             {
                 self.AllCommandInfo = new Dictionary<int, List<GMCommandInfo>>();
+                self.AllCommandInfoByFullName = new Dictionary<string, GMCommandInfo>();
                 GMKeyHelper.GetKeys();
                 self.Init();
+                self.LoadHistory();
                 self.YIUIRoot().OpenPanelAsync<GMPanelComponent>().NoContext();
             }
         }
@@ -47,6 +49,7 @@ namespace ET.Client
                 gmCommandInfo.GMLevel = customAttribute.GMLevel;
                 gmCommandInfo.GMName = customAttribute.GMName;
                 gmCommandInfo.GMDesc = customAttribute.GMDesc;
+                gmCommandInfo.CommandFullName = type.FullName;
                 gmCommandInfo.Command = obj;
                 gmCommandInfo.ParamInfoList = obj.GetParams() ?? new();
 
@@ -64,6 +67,10 @@ namespace ET.Client
             var listInfo = self.AllCommandInfo[info.GMType];
 
             listInfo.Add(info);
+            if (!string.IsNullOrEmpty(info.CommandFullName))
+            {
+                self.AllCommandInfoByFullName[info.CommandFullName] = info;
+            }
         }
 
         public static async ETTask Run(this GMCommandComponent self, GMCommandInfo info)
@@ -84,14 +91,22 @@ namespace ET.Client
 
             EntityRef<GMCommandComponent> selfRef = self;
             var banClickCode = self.YIUIMgr().BanLayerOptionForever();
+            ParamVo paramVo = null;
             try
             {
-                var paramVo = ParamVo.Get(objData);
+                paramVo = ParamVo.Get(objData);
                 var closeGM = await info.Command.Run(self.Root(), paramVo);
                 ParamVo.Put(paramVo);
+                paramVo = null;
+                self = selfRef;
+                if (self == null)
+                {
+                    return;
+                }
+
+                self.RecordHistory(info);
                 if (closeGM)
                 {
-                    self = selfRef;
                     await self.DynamicEvent(new OnGMEventClose());
                 }
             }
@@ -101,8 +116,16 @@ namespace ET.Client
             }
             finally
             {
+                if (paramVo != null)
+                {
+                    ParamVo.Put(paramVo);
+                }
+
                 self = selfRef;
-                self.YIUIMgr().RecoverLayerOptionForever(banClickCode);
+                if (self != null)
+                {
+                    self.YIUIMgr().RecoverLayerOptionForever(banClickCode);
+                }
             }
         }
     }

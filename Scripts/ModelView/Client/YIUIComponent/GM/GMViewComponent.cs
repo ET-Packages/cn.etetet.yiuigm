@@ -3,7 +3,7 @@ using YIUIFramework;
 
 namespace ET.Client
 {
-    public partial class GMViewComponent : Entity, IDynamicEvent<OnGMEventClose>
+    public partial class GMViewComponent : Entity, IDynamicEvent<OnGMEventClose>, IDynamicEvent<OnGMEventHistoryChanged>
     {
         public bool                           Opened;
         public List<int>                      GMTypeData;
@@ -16,6 +16,6 @@ namespace ET.Client
         public EntityRef<GMCommandComponent> m_CommandComponent;
         public GMCommandComponent            CommandComponent => m_CommandComponent;
 
-        public IntPrefs m_GMTypeIndex = new("GMTypeIndex");
+        public IntPrefs m_GMType = new("GMType", null, GMHistoryDefine.HistoryType);
     }
 }
