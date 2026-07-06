@@ -1,9 +1,6 @@
 using System;
-using System.IO;
 using YIUIFramework;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace ET.Client
 {
@@ -14,7 +11,8 @@ namespace ET.Client
         private static void YIUIInitialize(this GMViewComponent self)
         {
             self.m_CommandComponent = self.Root().GetComponent<GMCommandComponent>();
-            self.m_GMTypeLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type, string>(self.u_ComGMTypeLoop, typeof(GMTypeItemComponent), "u_EventSelect");
+            self.m_GMTypeLoop = self.AddChild<YIUISuperScrollListComponent, SuperScrollView.LoopListView2>(self.u_ComTitleLoopLoopListView2);
+            self.GMTypeLoop.SetOnClick();
             self.GMTypeData = new List<int>();
 
             self.GMTypeData.Add(GMHistoryDefine.HistoryType);
@@ -23,7 +21,7 @@ namespace ET.Client
                 self.GMTypeData.Add(gmType);
             }
 
-            self.m_GMCommandLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type>(self.u_ComGMCommandLoop, typeof(GMCommandItemComponent));
+            self.m_GMCommandLoop = self.AddChild<YIUISuperScrollListComponent, SuperScrollView.LoopListView2>(self.u_ComCommandLoopLoopListView2);
         }
 
         [EntitySystem]
@@ -50,7 +48,8 @@ namespace ET.Client
             self.GMTypeLoop.ClearSelect();
             self.Opened = true;
             var openIndex = self.GetOpenTypeIndex();
-            await self.GMTypeLoop.SetDataRefresh(self.GMTypeData, openIndex);
+            self.GMTypeLoop.SetDataRefreshSelect(self.GMTypeData.Count, openIndex);
+            await ETTask.CompletedTask;
             return true;
         }
 
@@ -97,29 +96,30 @@ namespace ET.Client
             if (data == GMHistoryDefine.HistoryType)
             {
                 self.CommandComponent.RebuildHistoryCommandInfoList(true);
-                self.GMCommandLoop.SetDataRefresh(self.CommandComponent.HistoryCommandInfoList).NoContext();
-                return;
+                self.CurrentCommandInfoList = self.CommandComponent.HistoryCommandInfoList;
             }
-
-            if (self.CommandComponent.AllCommandInfo.TryGetValue(data, out var commandInfoList))
+            else if (self.CommandComponent.AllCommandInfo.TryGetValue(data, out var commandInfoList))
             {
-                self.GMCommandLoop.SetDataRefresh(commandInfoList).NoContext();
+                self.CurrentCommandInfoList = commandInfoList;
             }
             else
             {
-                self.GMCommandLoop.SetDataRefresh(new List<GMCommandInfo>()).NoContext();
+                self.CurrentCommandInfoList = new List<GMCommandInfo>();
             }
+
+            self.GMCommandLoop.SetDataRefresh(self.CurrentCommandInfoList.Count);
         }
 
         [EntitySystem]
-        private static void YIUILoopRenderer(this GMViewComponent self, GMCommandItemComponent item, GMCommandInfo data, int index, bool select)
+        private static void YIUISuperScrollListRenderer(this GMViewComponent self, GMCommandItemComponent item, YIUISuperScrollListComponent superScrollList, int index, bool select)
         {
-            item.ResetItem(self.CommandComponent, data);
+            item.ResetItem(self.CommandComponent, self.CurrentCommandInfoList[index]);
         }
 
         [EntitySystem]
-        private static void YIUILoopRenderer(this GMViewComponent self, GMTypeItemComponent item, int data, int index, bool select)
+        private static void YIUISuperScrollListRenderer(this GMViewComponent self, GMTypeItemComponent item, YIUISuperScrollListComponent superScrollList, int index, bool select)
         {
+            var data = self.GMTypeData[index];
             item.ResetItem(data);
             item.SelectItem(select);
             if (select)
@@ -129,11 +129,12 @@ namespace ET.Client
         }
 
         [EntitySystem]
-        private static void YIUILoopOnClick(this GMViewComponent self, GMTypeItemComponent item, int data, int index, bool select)
+        private static void YIUISuperScrollListOnClick(this GMViewComponent self, GMTypeItemComponent item, YIUISuperScrollListComponent superScrollList, int index, bool select)
         {
             item.SelectItem(select);
             if (select)
             {
+                var data = self.GMTypeData[index];
                 self.m_GMType.Value = data;
                 self.SelectTitleRefreshCommand(data);
             }

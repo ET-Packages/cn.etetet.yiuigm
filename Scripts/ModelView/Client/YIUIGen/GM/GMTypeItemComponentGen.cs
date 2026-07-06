@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using YIUIFramework;
 using System.Collections.Generic;
@@ -20,9 +20,9 @@ namespace ET.Client
         public YIUIChild UIBase => u_UIBase;
         public YIUIFramework.UIDataValueString u_DataTypeName;
         public YIUIFramework.UIDataValueBool u_DataSelect;
-        public UIEventP0 u_EventSelect;
-        public UIEventHandleP0 u_EventSelectHandle;
-        public const string OnEventSelectInvoke = "GMTypeItemComponent.OnEventSelectInvoke";
+        public UIEventP0 u_EventClick;
+        public UIEventHandleP0 u_EventClickHandle;
+        public const string OnEventClickInvoke = "GMTypeItemComponent.OnEventClickInvoke";
 
     }
 }

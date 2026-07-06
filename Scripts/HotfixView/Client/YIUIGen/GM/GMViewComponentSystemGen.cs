@@ -34,8 +34,8 @@ namespace ET.Client
             self.UIView.ViewWindowType = EViewWindowType.View;
             self.UIView.StackOption = EViewStackOption.None;
 
-            self.u_ComGMTypeLoop = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.LoopVerticalScrollRect>("u_ComGMTypeLoop");
-            self.u_ComGMCommandLoop = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.LoopVerticalScrollRect>("u_ComGMCommandLoop");
+            self.u_ComTitleLoopLoopListView2 = self.UIBase.ComponentTable.FindComponent<SuperScrollView.LoopListView2>("u_ComTitleLoopLoopListView2");
+            self.u_ComCommandLoopLoopListView2 = self.UIBase.ComponentTable.FindComponent<SuperScrollView.LoopListView2>("u_ComCommandLoopLoopListView2");
             self.u_UIYIUIClose_White = self.UIBase.CDETable.FindUIOwner<ET.Client.YIUICloseCommonComponent>("YIUIClose_White");
 
         }

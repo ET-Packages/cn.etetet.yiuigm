@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using YIUIFramework;
 using System.Collections.Generic;
@@ -29,8 +29,8 @@ namespace ET.Client
 
             self.u_DataTypeName = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataTypeName");
             self.u_DataSelect = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueBool>("u_DataSelect");
-            self.u_EventSelect = self.UIBase.EventTable.FindEvent<UIEventP0>("u_EventSelect");
-            self.u_EventSelectHandle = self.u_EventSelect.Add(self,GMTypeItemComponent.OnEventSelectInvoke);
+            self.u_EventClick = self.UIBase.EventTable.FindEvent<UIEventP0>("u_EventClick");
+            self.u_EventClickHandle = self.u_EventClick.Add(self,GMTypeItemComponent.OnEventClickInvoke);
 
         }
     }

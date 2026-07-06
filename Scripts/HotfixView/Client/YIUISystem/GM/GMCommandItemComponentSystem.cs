@@ -1,7 +1,6 @@
-using System;
-using YIUIFramework;
-using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
+using YIUIFramework;
 
 namespace ET.Client
 {
@@ -11,13 +10,13 @@ namespace ET.Client
         [EntitySystem]
         private static void YIUIInitialize(this GMCommandItemComponent self)
         {
-            self.m_GMParamLoop = self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type>(self.u_ComParamLoop, typeof(GMParamItemComponent));
+            self.m_GMParamLoop = self.AddChild<YIUISuperScrollListComponent, SuperScrollView.LoopListView2>(self.u_ComSuperScrollViewLoopListView2);
         }
 
         [EntitySystem]
-        private static void YIUILoopRenderer(this GMCommandItemComponent self, GMParamItemComponent item, GMParamInfo data, int index, bool select)
+        private static void YIUISuperScrollListRenderer(this GMCommandItemComponent self, GMParamItemComponent item, YIUISuperScrollListComponent superScrollList, int index, bool select)
         {
-            item.ResetItem(data);
+            item.ResetItem(self.Info.ParamInfoList[index]);
         }
 
         [EntitySystem]
@@ -33,12 +32,15 @@ namespace ET.Client
             self.u_DataDesc.SetValue(info.GMDesc);
             self.u_DataShowParamLoop.SetValue(info.ParamInfoList.Count >= 1);
             self.u_DataIsHistoryRecord.SetValue(info.IsHistoryRecord);
-            self.WaitRefresh().NoContext();
+            self.WaitRefresh();
         }
 
-        private static async ETTask WaitRefresh(this GMCommandItemComponent self)
+        private static void WaitRefresh(this GMCommandItemComponent self)
         {
-            await self.GMParamLoop.SetDataRefresh(self.Info.ParamInfoList);
+            self.GMParamLoop.SetDataRefresh(self.Info.ParamInfoList.Count);
+            // GMCommandItem 高度随参数数量动态变化，嵌套列表刷新后 LayoutGroup 尚未重算
+            // 必须在 renderer 回调返回前强制重建布局，否则 LoopListView2 读到的是旧高度
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)self.UIBase.OwnerGameObject.transform);
         }
 
         #region YIUIEvent开始

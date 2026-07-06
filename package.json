@@ -15,7 +15,9 @@
   },
   "relatedPackages": {},
   "dependencies": {
-    "cn.etetet.core": "1.0.0"
+    "cn.etetet.core": "1.0.0",
+    "cn.etetet.yiuiframework": "3.1.4",
+    "cn.etetet.yiuisuperscroll": "0.0.1"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@ET-Packages"

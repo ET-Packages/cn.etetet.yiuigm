@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using YIUIFramework;
 using System.Collections.Generic;
 
@@ -29,8 +29,8 @@ namespace ET.Client
 
         #region YIUIEvent开始
 
-        [YIUIInvoke(GMTypeItemComponent.OnEventSelectInvoke)]
-        private static void OnEventSelectInvoke(this GMTypeItemComponent self)
+        [YIUIInvoke(GMTypeItemComponent.OnEventClickInvoke)]
+        private static void OnEventClickInvoke(this GMTypeItemComponent self)
         {
         }
 

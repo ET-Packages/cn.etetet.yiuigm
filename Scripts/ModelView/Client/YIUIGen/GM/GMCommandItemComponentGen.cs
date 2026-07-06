@@ -18,7 +18,7 @@ namespace ET.Client
 
         public EntityRef<YIUIChild> u_UIBase;
         public YIUIChild UIBase => u_UIBase;
-        public UnityEngine.UI.LoopHorizontalScrollRect u_ComParamLoop;
+        public SuperScrollView.LoopListView2 u_ComSuperScrollViewLoopListView2;
         public YIUIFramework.UIDataValueString u_DataName;
         public YIUIFramework.UIDataValueBool u_DataShowParamLoop;
         public YIUIFramework.UIDataValueString u_DataDesc;

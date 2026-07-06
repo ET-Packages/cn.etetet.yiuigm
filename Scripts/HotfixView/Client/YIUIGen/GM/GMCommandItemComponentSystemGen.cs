@@ -27,7 +27,7 @@ namespace ET.Client
         {
             self.u_UIBase = self.GetParent<YIUIChild>();
 
-            self.u_ComParamLoop = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.LoopHorizontalScrollRect>("u_ComParamLoop");
+            self.u_ComSuperScrollViewLoopListView2 = self.UIBase.ComponentTable.FindComponent<SuperScrollView.LoopListView2>("u_ComSuperScrollViewLoopListView2");
             self.u_DataName = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataName");
             self.u_DataShowParamLoop = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueBool>("u_DataShowParamLoop");
             self.u_DataDesc = self.UIBase.DataTable.FindDataValue<YIUIFramework.UIDataValueString>("u_DataDesc");
